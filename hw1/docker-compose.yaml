@@ -1,0 +1,92 @@
+version: '3'
+
+services:
+  proxy:
+    build:
+      context: .
+      dockerfile: proxy/Dockerfile
+    environment:
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
+    ports:
+      - 2000:2000/udp
+    depends_on:
+      - native
+      - xml
+      - json
+      - protobuf
+      - avro
+      - yaml
+      - msgpack
+  native:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      FORMAT: native
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
+  xml:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      FORMAT: xml
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
+  json:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      FORMAT: json
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
+  protobuf:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      FORMAT: protobuf
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
+  avro:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      FORMAT: avro
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
+  yaml:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      FORMAT: yaml
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
+  msgpack:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      FORMAT: msgpack
+      PROXY_PORT: 2000
+      SERVER_PORT: 2228
+      MULTICAST_IPV: 224.1.1.1
+      MULTICAST_PORT: 2228
